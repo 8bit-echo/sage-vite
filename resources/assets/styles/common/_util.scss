@@ -1,0 +1,29 @@
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.container {
+  width: 100%;
+  max-width: $max-width;
+  margin: auto;
+}
+
+@mixin pseudo() {
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+@mixin undoListStyles() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

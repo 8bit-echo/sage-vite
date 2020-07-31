@@ -1,0 +1,18 @@
+footer.site-footer {
+  margin-top: $spacer;
+  background: $black;
+  color: $white;
+  padding: $spacer $spacer/2;
+
+  a {
+    color: white;
+  }
+
+  @media all and (min-width: $breakpoint) {
+    .widgets {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+body#tinymce {
+  margin: 12px !important;
+}
+
+.alignfull {
+  margin-left: calc(-100vw / 2 + 100% / 2);
+  margin-right: calc(-100vw / 2 + 100% / 2);
+  max-width: 100vw;
+}
+
+figcaption {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+blockquote,
+.wp-block-quote,
+.wp-block-quote.is-style-large {
+  border-inline-start: solid 4px $black;
+  padding: $spacer/2 $spacer;
+  background-color: whitesmoke;
+}
+
+.wp-block-pullquote blockquote {
+  background-color: transparent;
+  border: none;
+  font-style: italic;
+  position: relative;
+
+  &::before,
+  &::after {
+    @include pseudo();
+
+    font-size: 7rem;
+    color: lightgrey;
+    font-family: serif;
+    content: "\201C";
+    left: -2rem;
+    top: -2rem;
+  }
+}
+
+.wp-block-embed.is-type-video {
+  margin: 2rem auto;
+  position: relative;
+
+  .wp-block-embed__wrapper {
+    position: relative;
+    margin: auto;
+    padding-bottom: 56.9%; // only works with 16:9 aspect ratio
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

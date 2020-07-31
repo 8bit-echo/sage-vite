@@ -1,0 +1,227 @@
+header.site-header {
+  box-shadow: 0 5px 1rem rgba($black, 0.25);
+}
+
+nav.primary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .mobile-button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  a.custom-logo-link {
+    max-width: 40%;
+    display: flex; /* ensures no floating borders */
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  #mobile-nav-open {
+    right: $spacer;
+  }
+
+  #mobile-nav-close {
+    position: absolute;
+    top: $spacer;
+    right: $spacer;
+    z-index: 10;
+  }
+
+  // top level
+  .mobile-menu-wrap {
+    position: fixed;
+    background-color: $white;
+    top: 0;
+    right: -100vw;
+    height: 100vh;
+    width: 80vw;
+    padding: 1rem;
+    transition: right 500ms ease-in-out;
+    box-shadow: -5px 0 1rem rgba(0, 0, 0, 0.5);
+
+    &.active {
+      right: 0;
+    }
+  }
+
+  li.menu-item {
+    font-size: 1.25rem;
+    padding: 10px 0;
+
+    &.menu-item-has-children {
+      &::after {
+        display: inline-block;
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-left: 5px;
+        border-bottom: solid 2px black;
+        border-right: solid 2px black;
+        transform: rotate(-45deg);
+      }
+
+      .sub-menu {
+        position: absolute;
+        right: -100vw;
+        top: 0;
+        background-color: $white;
+        transition: right 500ms ease-in-out;
+        z-index: 4;
+        padding: $spacer;
+        box-shadow: 0 -5px 1rem rgba(0, 0, 0, 0.5);
+      }
+
+      //TODO: need JS to handle mobile this class.
+      &.open {
+        > .sub-menu {
+          width: 95%;
+          height: 100%;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: $breakpoint) {
+  nav.primary {
+    display: flex;
+    align-items: center;
+
+    a.custom-logo-link {
+      max-width: 200px;
+      margin-right: $spacer;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    ul {
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    > div {
+      flex: 1;
+    }
+
+    // top level
+    .menu {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    li.menu-item {
+      flex-shrink: 1;
+      position: relative;
+      line-height: 1.2;
+      padding: 5px 0;
+      font-size: 0.9rem;
+      height: auto;
+      margin: 0 1rem;
+
+      &.menu-item-has-children {
+        &::after {
+          transform: rotate(45deg) translateY(-5px);
+        }
+
+        .sub-menu {
+          display: none;
+          position: absolute;
+          top: calc(100% + 15px);
+          padding: $spacer/2 $spacer;
+          width: 15rem;
+          background-color: $black;
+          right: 0;
+          transition: none;
+          box-shadow: 0 0 2px rgba($white, 15%);
+
+          a {
+            color: $white;
+          }
+
+          &::before {
+            content: "";
+            display: block;
+            background: transparent;
+            width: 100%;
+            height: 15px;
+            position: absolute;
+            top: -15px;
+            left: 0;
+          }
+
+          &::after {
+            display: block;
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 10px;
+            border-color: transparent transparent $black transparent;
+          }
+
+          li::after {
+            border-color: $white;
+          }
+        }
+
+        &:hover {
+          > .sub-menu {
+            display: block;
+            height: auto;
+            width: 15rem;
+            left: 0;
+          }
+        }
+      }
+
+      &.current-menu-item {
+        border-bottom: solid 3px $brand-primary;
+      }
+    }
+
+    .mobile-menu-wrap {
+      position: static;
+      background: transparent;
+      top: 0;
+      right: 0;
+      height: auto;
+      width: 100%;
+      padding: 0;
+      transition: right 500ms ease-in-out;
+      box-shadow: none;
+    }
+  }
+
+  .mobile-button {
+    display: none;
+  }
+}
+
+body.logged-in {
+  .mobile-menu-wrap.active {
+    top: calc(32px + 1rem);
+  }
+}
