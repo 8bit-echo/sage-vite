@@ -1,3 +1,13 @@
+/* stylelint-disable */
+:root {
+  --background: ghostwhite;
+  --text-color: #222222;
+  // @media (prefers-color-scheme: dark) {
+  //   --background: #2e2e2e;
+  //   --text-color: ghostwhite;
+  // }
+}
+/* stylelint-enable */
 body,
 html {
   font-size: 16px;
@@ -6,8 +16,8 @@ html {
   height: 100%;
   font-family: sans-serif;
   line-height: 1.5;
-  // max-width: 100vw;
-  // overflow-x: hidden;
+  background: var(--background);
+  color: var(--text-color);
 }
 
 *,

@@ -46,7 +46,8 @@ nav.primary {
   // top level
   .mobile-menu-wrap {
     position: fixed;
-    background-color: $white;
+    background-color: var(--background);
+    color: var(--text-color);
     top: 0;
     right: -100vw;
     height: 100vh;
@@ -67,12 +68,12 @@ nav.primary {
     &.menu-item-has-children {
       &::after {
         display: inline-block;
-        content: "";
+        content: '';
         width: 0.5rem;
         height: 0.5rem;
         margin-left: 5px;
-        border-bottom: solid 2px black;
-        border-right: solid 2px black;
+        border-bottom: solid 2px var(--text-color);
+        border-right: solid 2px var(--text-color);
         transform: rotate(-45deg);
       }
 
@@ -80,7 +81,7 @@ nav.primary {
         position: absolute;
         right: -100vw;
         top: 0;
-        background-color: $white;
+        background-color: var(--background);
         transition: right 500ms ease-in-out;
         z-index: 4;
         padding: $spacer;
@@ -149,17 +150,17 @@ nav.primary {
           top: calc(100% + 15px);
           padding: $spacer/2 $spacer;
           width: 15rem;
-          background-color: $black;
+          background-color: var(--text-color);
           right: 0;
           transition: none;
           box-shadow: 0 0 2px rgba($white, 15%);
 
           a {
-            color: $white;
+            color: var(--background);
           }
 
           &::before {
-            content: "";
+            content: '';
             display: block;
             background: transparent;
             width: 100%;
@@ -171,7 +172,7 @@ nav.primary {
 
           &::after {
             display: block;
-            content: "";
+            content: '';
             position: absolute;
             top: -10px;
             left: 10px;
@@ -179,7 +180,7 @@ nav.primary {
             height: 0;
             border-style: solid;
             border-width: 0 10px 10px 10px;
-            border-color: transparent transparent $black transparent;
+            border-color: transparent transparent var(--text-color) transparent;
           }
 
           li::after {
