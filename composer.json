@@ -1,5 +1,6 @@
 {
   "name": "8bit-echo/sage-vite",
+  "version": "9.0.9",
   "type": "wordpress-theme",
   "license": "MIT",
   "description": "WordPress starter theme with Vite workflow",
@@ -46,13 +47,9 @@
     "oscarotero/env": "^2.1"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^2.8.0",
-    "roots/sage-installer": "~1.6"
+    "squizlabs/php_codesniffer": "^2.8.0"
   },
   "scripts": {
-    "test": ["phpcs"],
-    "post-create-project-cmd": [
-      "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
-    ]
+    "test": ["phpcs"]
   }
 }
