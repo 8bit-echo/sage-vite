@@ -8,3 +8,4 @@ yarn-error.log
 /vendor
 resources/assets/config-local.json
 .env
+.DS_Store
