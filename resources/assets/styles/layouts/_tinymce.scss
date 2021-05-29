@@ -19,7 +19,7 @@ blockquote,
 .wp-block-quote,
 .wp-block-quote.is-style-large {
   border-inline-start: solid 4px $black;
-  padding: $spacer/2 $spacer;
+  padding: math.div($spacer, 2) $spacer;
   background-color: rgba(black, 0.25);
 }
 

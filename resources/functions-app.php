@@ -2,7 +2,7 @@
 // define site-specific functions
 
 // Custom Color Palette.
-add_action('after_setup_theme', function() {
+add_action('after_setup_theme', function () {
   $colors = [
     [
       'name'    => 'White',
@@ -21,7 +21,8 @@ add_action('after_setup_theme', function() {
 
 
 // Custom WYSIWYG FORMATS
-function cusom_tinymce_formats($init_array) {
+function cusom_tinymce_formats($init_array)
+{
   $style_formats = [
     [
       'title' => 'wrapper',
@@ -34,5 +35,5 @@ function cusom_tinymce_formats($init_array) {
 
   return $init_array;
 }
-// Attach callback to 'tiny_mce_before_init' 
+// Attach callback to 'tiny_mce_before_init'
 add_filter('tiny_mce_before_init', 'cusom_tinymce_formats');

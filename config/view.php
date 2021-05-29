@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | View Storage Paths
     |--------------------------------------------------------------------------
@@ -12,13 +12,13 @@ return [
     |
     */
 
-    'paths' => [
-        get_theme_file_path().'/resources/views',
-        get_parent_theme_file_path().'/resources/views',
-    ],
+  'paths' => [
+    get_theme_file_path() . '/resources/views',
+    get_parent_theme_file_path() . '/resources/views',
+  ],
 
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Compiled View Path
     |--------------------------------------------------------------------------
@@ -29,10 +29,10 @@ return [
     |
     */
 
-    'compiled' => wp_upload_dir()['basedir'].'/cache',
+  'compiled' => wp_upload_dir()['basedir'] . '/cache',
 
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | View Namespaces
     |--------------------------------------------------------------------------
@@ -44,8 +44,8 @@ return [
     |
     */
 
-    'namespaces' => [
-        /* Given the below example, in your views use something like: @include('WC::some.view.or.partial.here') */
-        // 'WC' => WP_PLUGIN_DIR.'/woocommerce/templates/',
-    ],
+  'namespaces' => [
+    /* Given the below example, in your views use something like: @include('WC::some.view.or.partial.here') */
+    // 'WC' => WP_PLUGIN_DIR.'/woocommerce/templates/',
+  ],
 ];

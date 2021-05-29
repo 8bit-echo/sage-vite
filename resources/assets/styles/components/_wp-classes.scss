@@ -13,25 +13,25 @@
 
 .aligncenter {
   display: block;
-  margin: ($spacer / 2) auto;
+  margin: math.div($spacer, 2) auto;
   height: auto;
 }
 
 .alignleft,
 .alignright {
-  margin-bottom: ($spacer / 2);
+  margin-bottom: math.div($spacer, 2);
   height: auto;
 }
 
 @media (min-width: 30rem) {
   .alignleft {
     float: left;
-    margin-right: ($spacer / 2);
+    margin-right: math.div($spacer, 2);
   }
 
   .alignright {
     float: right;
-    margin-left: ($spacer / 2);
+    margin-left: math.div($spacer, 2);
   }
 }
 

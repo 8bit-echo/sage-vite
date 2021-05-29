@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 namespace App\Controllers\Partials;
+
 use WP_Query;
 use WP_Post;
 
@@ -22,7 +23,6 @@ trait PostTrait {
           'terms' => $custom_taxterms
         ]
       ],
-      
     ];
     $related_items = new WP_Query($args);
 
@@ -34,31 +34,30 @@ trait PostTrait {
   }
 
   public static function getByTerm($post_type, $taxonomy, $term, $args = []) {
-      $default_args = [
-          'post_type'      => $post_type,
-          'post_status'    => 'publish',
-          'posts_per_page' => -1,
-          'tax_query'      => [
-            'relation' => 'AND',
-            [
-              'taxonomy'  => $taxonomy,
-              'field'     => 'slug',
-              'terms'     => $term,
-              'operator'  => 'IN'
-            ]
-          ],
-      ];
-      $args = array_merge($default_args, $args);
+    $default_args = [
+      'post_type'      => $post_type,
+      'post_status'    => 'publish',
+      'posts_per_page' => -1,
+      'tax_query'      => [
+        'relation' => 'AND',
+        [
+          'taxonomy'  => $taxonomy,
+          'field'     => 'slug',
+          'terms'     => $term,
+          'operator'  => 'IN'
+        ]
+      ],
+    ];
+    $args = array_merge($default_args, $args);
 
-      $the_posts = new WP_Query($args);
+    $the_posts = new WP_Query($args);
 
-      if ($the_posts->have_posts()) {
-        $posts = self::addACFFields($the_posts->posts);
-        return $posts;
-      } else {
-        return [];
-      }
-
+    if ($the_posts->have_posts()) {
+      $posts = self::addACFFields($the_posts->posts);
+      return $posts;
+    } else {
+      return [];
+    }
   }
 
   public static function getByCategory($post_type, $category_slug, $args = []) {
@@ -166,5 +165,4 @@ trait PostTrait {
       return [];
     }
   }
-
 }

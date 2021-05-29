@@ -1,6 +1,8 @@
 <?php
 
 use App\Classes\API;
+use App\Classes\Vite;
+
 new API();
 
 /*========================*/
@@ -10,7 +12,7 @@ new API();
 function clean_admin_bar() {
   global $wp_admin_bar;
   $wp_admin_bar->remove_menu('wp-logo');
-    // $wp_admin_bar->remove_menu('customize');
+  // $wp_admin_bar->remove_menu('customize');
   $wp_admin_bar->remove_menu('updates');
   $wp_admin_bar->remove_menu('comments');
   $wp_admin_bar->remove_menu('itsec_admin_bar_menu');
@@ -33,9 +35,9 @@ function allow_svg_upload($mimes) {
 /** fixes improper display of svg thumbnails in media library */
 function fix_svg_thumb_display() {
   echo '<style>
-    td.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail { 
-        width: 100% !important; 
-        height: auto !important; 
+    td.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail {
+        width: 100% !important;
+        height: auto !important;
     }
     </style>';
 }
@@ -87,19 +89,19 @@ function custom_excerpt_link_text($more) {
   }
 }
 
-function strip_archive_title( $title ) {
-  if ( is_category() ) {
-    $title = single_cat_title( '', false );
-  } elseif ( is_tag() ) {
-    $title = single_tag_title( '', false );
-  } elseif ( is_author() ) {
+function strip_archive_title($title) {
+  if (is_category()) {
+    $title = single_cat_title('', false);
+  } elseif (is_tag()) {
+    $title = single_tag_title('', false);
+  } elseif (is_author()) {
     $title = '<span class="vcard">' . get_the_author() . '</span>';
-  } elseif ( is_post_type_archive() ) {
-    $title = post_type_archive_title( '', false );
-  } elseif ( is_tax() ) {
-    $title = single_term_title( '', false );
+  } elseif (is_post_type_archive()) {
+    $title = post_type_archive_title('', false);
+  } elseif (is_tax()) {
+    $title = single_term_title('', false);
   } elseif (is_month()) {
-    $title = single_month_title('', false);
+    $title = str_replace('Month: ', '', $title);
   }
 
   return $title;
@@ -136,4 +138,4 @@ add_action('after_setup_theme', 'theme_setup');
 add_filter('upload_mimes', 'allow_svg_upload');
 add_filter('excerpt_more', 'custom_excerpt_link_text', 21);
 add_filter('the_content', 'lazy_load_wysiwyg_images', 10, 1);
-add_filter( 'get_the_archive_title', 'strip_archive_title' );
+add_filter('get_the_archive_title', 'strip_archive_title');

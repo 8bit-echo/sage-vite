@@ -5,6 +5,17 @@ namespace App\Controllers;
 use Sober\Controller\Controller;
 
 class App extends Controller {
+
+  public static function isDev() {
+    return ($_ENV['APP_ENV'] === 'development');
+  }
+
+  public static function theme_name() {
+    $uri = get_theme_file_uri();
+    $offset = strripos($uri, '/');
+    return substr($uri, $offset + 1);
+  }
+
   public function siteName() {
     return get_bloginfo('name');
   }

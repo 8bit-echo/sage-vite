@@ -11,7 +11,7 @@
   @while (have_posts()) @php the_post() @endphp
   <div class="index-container container">
     @include('partials.content-'.get_post_type())
-    
+
     @endwhile {!! get_the_posts_navigation() !!}
   </div>
 @endsection

@@ -13,13 +13,13 @@ use Roots\Sage\Container;
  * @return Container|mixed
  */
 function sage($abstract = null, $parameters = [], Container $container = null) {
-    $container = $container ?: Container::getInstance();
-    if (!$abstract) {
-        return $container;
-    }
-    return $container->bound($abstract)
-        ? $container->makeWith($abstract, $parameters)
-        : $container->makeWith("sage.{$abstract}", $parameters);
+  $container = $container ?: Container::getInstance();
+  if (!$abstract) {
+    return $container;
+  }
+  return $container->bound($abstract)
+    ? $container->makeWith($abstract, $parameters)
+    : $container->makeWith("sage.{$abstract}", $parameters);
 }
 
 /**
@@ -34,13 +34,13 @@ function sage($abstract = null, $parameters = [], Container $container = null) {
  * @link https://github.com/laravel/framework/blob/c0970285/src/Illuminate/Foundation/helpers.php#L254-L265
  */
 function config($key = null, $default = null) {
-    if (is_null($key)) {
-        return sage('config');
-    }
-    if (is_array($key)) {
-        return sage('config')->set($key);
-    }
-    return sage('config')->get($key, $default);
+  if (is_null($key)) {
+    return sage('config');
+  }
+  if (is_array($key)) {
+    return sage('config')->set($key);
+  }
+  return sage('config')->get($key, $default);
 }
 
 /**
@@ -49,7 +49,7 @@ function config($key = null, $default = null) {
  * @return string
  */
 function template($file, $data = []) {
-    return sage('blade')->render($file, $data);
+  return sage('blade')->render($file, $data);
 }
 
 /**
@@ -59,7 +59,7 @@ function template($file, $data = []) {
  * @return string
  */
 function template_path($file, $data = []) {
-    return sage('blade')->compiledPath($file, $data);
+  return sage('blade')->compiledPath($file, $data);
 }
 
 /**
@@ -67,7 +67,7 @@ function template_path($file, $data = []) {
  * @return string
  */
 function asset_path($asset) {
-    return sage('assets')->getUri($asset);
+  return sage('assets')->getUri($asset);
 }
 
 /**
@@ -75,40 +75,40 @@ function asset_path($asset) {
  * @return array
  */
 function filter_templates($templates) {
-    $paths = apply_filters('sage/filter_templates/paths', [
-        'views',
-        'resources/views'
-    ]);
-    $paths_pattern = "#^(" . implode('|', $paths) . ")/#";
+  $paths = apply_filters('sage/filter_templates/paths', [
+    'views',
+    'resources/views'
+  ]);
+  $paths_pattern = "#^(" . implode('|', $paths) . ")/#";
 
-    return collect($templates)
-        ->map(function ($template) use ($paths_pattern) {
-            /** Remove .blade.php/.blade/.php from template names */
-            $template = preg_replace('#\.(blade\.?)?(php)?$#', '', ltrim($template));
+  return collect($templates)
+    ->map(function ($template) use ($paths_pattern) {
+      /** Remove .blade.php/.blade/.php from template names */
+      $template = preg_replace('#\.(blade\.?)?(php)?$#', '', ltrim($template));
 
-            /** Remove partial $paths from the beginning of template names */
-            if (strpos($template, '/')) {
-                $template = preg_replace($paths_pattern, '', $template);
-            }
+      /** Remove partial $paths from the beginning of template names */
+      if (strpos($template, '/')) {
+        $template = preg_replace($paths_pattern, '', $template);
+      }
 
-            return $template;
+      return $template;
+    })
+    ->flatMap(function ($template) use ($paths) {
+      return collect($paths)
+        ->flatMap(function ($path) use ($template) {
+          return [
+            "{$path}/{$template}.blade.php",
+            "{$path}/{$template}.php",
+          ];
         })
-        ->flatMap(function ($template) use ($paths) {
-            return collect($paths)
-                ->flatMap(function ($path) use ($template) {
-                    return [
-                        "{$path}/{$template}.blade.php",
-                        "{$path}/{$template}.php",
-                    ];
-                })
-                ->concat([
-                    "{$template}.blade.php",
-                    "{$template}.php",
-                ]);
-        })
-        ->filter()
-        ->unique()
-        ->all();
+        ->concat([
+          "{$template}.blade.php",
+          "{$template}.php",
+        ]);
+    })
+    ->filter()
+    ->unique()
+    ->all();
 }
 
 /**
@@ -116,7 +116,7 @@ function filter_templates($templates) {
  * @return string Location of the template
  */
 function locate_template($templates) {
-    return \locate_template(filter_templates($templates));
+  return \locate_template(filter_templates($templates));
 }
 
 /**
@@ -124,7 +124,7 @@ function locate_template($templates) {
  * @return bool
  */
 function display_sidebar() {
-    static $display;
-    isset($display) || $display = apply_filters('sage/display_sidebar', false);
-    return $display;
+  static $display;
+  isset($display) || $display = apply_filters('sage/display_sidebar', false);
+  return $display;
 }

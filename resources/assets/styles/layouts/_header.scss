@@ -1,3 +1,4 @@
+@use 'sass:math';
 header.site-header {
   box-shadow: 0 5px 1rem rgba($black, 0.25);
 }
@@ -57,6 +58,7 @@ nav.primary {
     box-shadow: -5px 0 1rem rgba(0, 0, 0, 0.5);
 
     &.active {
+      z-index: 10;
       right: 0;
     }
   }
@@ -138,6 +140,11 @@ nav.primary {
       font-size: 0.9rem;
       height: auto;
       margin: 0 1rem;
+      border-bottom: solid 3px transparent;
+
+      &:hover {
+        border-bottom: solid 3px lighten($brand-primary, 20%);
+      }
 
       &.menu-item-has-children {
         &::after {
@@ -148,7 +155,7 @@ nav.primary {
           display: none;
           position: absolute;
           top: calc(100% + 15px);
-          padding: $spacer/2 $spacer;
+          padding: math.div($spacer, 2) $spacer;
           width: 15rem;
           background-color: var(--text-color);
           right: 0;
