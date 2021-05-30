@@ -1,5 +1,8 @@
 # Sage + Vite Theme
 
+![screenshot](https://user-images.githubusercontent.com/8560685/120092392-8f4ec700-c0cf-11eb-80a3-929929ec9861.png)
+
+
 Sage is a WordPress starter theme with a modern development workflow.
 
 ## Features
