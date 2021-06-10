@@ -5,6 +5,11 @@
 
 Sage is a WordPress starter theme with a modern development workflow.
 
+# Motivations for WordPress + Vite
+This is a modified version of [Sage](https://roots.io/sage/) combined with github user [andrefilipe's vite configuration](https://github.com/andrefelipe/vite-php-setup) that allows developers to use Vite in a WordPress site. It works by serving assets from localhost:3000 during development for HMR, and from the dist folder when compiled for production. It uses a simple abstraction around wp_enqueue_script to make registering and loading assets as easy as possible. 
+
+Because Vite is incredibly fast and supports HMR, you no longer need to reload the entire page to see your js, css changes. Additionally any changes to php files or blade templates will automatically trigger the browser to refresh the page for you. I believe that this is a much better developer experience than using the built-in sage tools, or even laravel-mix. Additionally, all top-level files are automatically added as entry points, so there is less to manage during development, and you can get right to coding. WordPress has enough going on without needing to worry about your front-end as well. 
+
 ## Features
 
 * [Vite](https://vitejs.dev) tooling with support for TypeScript, React, and Vue, and Hot Module Replacement (HMR) out-of-the-box.
